@@ -1,0 +1,65 @@
+from django.shortcuts import render,HttpResponse
+from .models import Room
+
+# Create your views here.
+
+stud=[
+    { 'id':1,'var':'this new topic'},
+    { 'id':2,'var':'today is day one from scracth'},
+    { 'id':3,'var':'today is day two'},
+]
+def hom(request):
+    # stud=Room.objects.all()
+    context={'stud':stud}
+    return render(request,'hom.html',context)
+
+def room(request,pk):
+    #stud=Room.objects.get(id=pk)
+    # room=None
+    # for i in stud:
+    #     if i['id']==int(pk):
+    #         room=i
+    contxt={'stud':stud}
+    
+    return render(request,'room.html',contxt)
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------------------
+from django.db import models
+from django.contrib.auth.models import User
+
+# Create your models here.
+
+# class Topic(models.Model):
+#     name=models.CharField(max_length=150)
+
+class Room(models.Model):
+    # host=models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
+    # topic=models.ForeignKey(Topic,on_delete=models.SET_NULL, null=True)
+    name=models.CharField(max_length=220)
+    desc=models.TextField(null=True,blank=True)
+    #parti=
+    updated=models.DateTimeField(auto_now=True)
+    crated=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+         return self.name
+
+# class mssg(models.Model):
+#     user=models.ForeignKey(User,on_delete=models.CASCADE)
+#     room=models.ForeignKey(Room,on_delete=models.CASCADE)
+#     body=models.DateTimeField()
+#     updated=models.DateTimeField(auto_now=True)
+#     crated=models.DateTimeField(auto_now_add=True)
+# def __str__(self):
+#     return self.body[0:50]
+
+
+
+
+
+
+
+
